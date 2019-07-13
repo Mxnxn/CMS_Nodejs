@@ -1,0 +1,44 @@
+<h1 style="font-family:'Poppins',sans-serif; font-weight:800">Edit Post</h1>
+
+<form action="/admin/posts/edits/{{posts.id}}?_method=PUT" method="post">
+    <div class="form-group">
+        <label for="title">Title :  </label><br>
+        <input name="title" value="{{posts.title}}" style="width:300px; height:40px; border-color:rgba(130,130,130,0.4); border-width:1px; border-radius:3px; padding-left:15px;" type="text" class="form-control" id="title" placeholder="Enter Title">
+    </div>
+    
+    <div>
+        <label for="category">Category :  </label>
+        <select name="category" name="category" id="category" style="width:300px; margin-bottom:20px;" class="form-control">
+            {{#each category}}
+            <option value="{{id}}">{{name}}</option>
+            {{/each}}
+        </select>
+    </div>
+
+    <div>
+        <label for="status">Type :  </label>
+        <select name="status" name="status" id="status" style="width:300px; margin-bottom:20px;" class="form-control">
+            {{#select posts.status}}
+                <option value="public">Public</option>
+                <option value="private">Private</option>
+                <option value="draft">Draft</option>
+            {{/select}}
+            
+        </select>
+    </div>
+    <div class="custom-control custom-checkbox" style="margin-bottom:20px;">
+        <input type="checkbox" name="allow" {{#if posts.allow}} checked="checked" {{/if}} class="custom-control-input" id="allow">
+        <label class="custom-control-label" for="allow">Allow Comments</label>
+    </div>
+    {{!-- <div class="form-check">
+        <input name="allow" {{#if posts.allow}} checked="checked" {{/if}}  type="checkbox" class="form-check-input" id="allow">
+        <label for="allow" class="form-check-label" name="allow">Allow Comments</label>
+    </div> --}}
+    <div class="form-group">
+        <label for="desc">Description :  </label><br>
+        <textarea  style="width:300px; height:100px; border-color:rgba(130,130,130,0.4); border-width:1px; border-radius:3px; padding-left:15px;
+        padding-top:5px; text-align:justify" type="text" class="desc" name="desc" id="desc" placeholder="Enter Discription">{{posts.desc}}</textarea>
+    </div>
+    <button class="btn btn-primary" type="submit" style="width:300px; height:40px;">Submit</button>
+</form>
+
